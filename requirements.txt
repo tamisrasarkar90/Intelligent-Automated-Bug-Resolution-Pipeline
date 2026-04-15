@@ -1,0 +1,4 @@
+requests>=2.31.0
+requests-ntlm>=1.2.0
+
+pywin32>=306

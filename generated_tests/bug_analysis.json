@@ -1,0 +1,383 @@
+{
+  "CSFMD-10288": {
+    "valid": true,
+    "fixable": true,
+    "severity": "HIGH",
+    "root_cause": "EmbeddedScripts.cs PickDataValidationVersion() extracts '2025' from 'Windows Server 2025' registry ProductName, but DataValidation2025.js does not exist and '2025' is not in SupportedDVOverrides array.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Web.Resources.Scripts/EmbeddedScripts.cs"
+    ],
+    "fix_description": "1. Create DataValidation2025.js (copy of DataValidation2022.js — same locale formats)\n2. Add 'DataValidation2025' constant and WebResource attribute in EmbeddedScripts.cs\n3. Add '2025' to SupportedDVOverrides array\n4. Add DataValidation2025 to final validation check\n5. Add Windows 11 workstation mapping (osName ' 11' → '2022')",
+    "fix_files": [
+      "fixes/EmbeddedScripts.cs",
+      "fixes/DataValidation2025.js"
+    ],
+    "status": "FIX CREATED"
+  },
+  "CSFMD-6429": {
+    "valid": true,
+    "fixable": true,
+    "severity": "CRITICAL (Highest priority)",
+    "root_cause": "In KeywordPanelItem.js getQueryKeywordEx(), when building cascading dataset parent values, hidden keywords (type='hidden') are skipped because their getCurrentValue() returns empty string. The check at line ~2324 requires strValue.length > 0 to include the keyword in the XML sent to ExpandCascadingDataSet. Since hidden parent keywords have no visible value, child keywords receive no parent context and return empty results.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanelItem.js",
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanel.js"
+    ],
+    "fix_description": "In KeywordPanelItem.js finishGettingQueryKeyword(), when cascadingDataSetID is set, also check for hidden keyword values (element.type === 'hidden') and include their stored value in the cascading query XML. The hidden keyword's value is stored in element.getAttribute('strDefaultValue') or a hidden input. This requires passing hidden parent values to ExpandCascadingDataSet.",
+    "fix_files": [],
+    "status": "ROOT CAUSE IDENTIFIED — requires deeper business logic review before fixing"
+  },
+  "CSFMD-10991": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "AutoFill Keyword Set Importer fails when keysetnum is blank. This is a server-side Core issue in the AFKS importer, not in Web Client JS. The PerformAutofillKeysetExpansion in KeywordHandler.cs passes keysetID but the importer tool itself is separate from the web keyword panel.",
+    "affected_files": [
+      "Core AFKS Importer (not in Hyland.Controls.Web — likely in Configuration tool)"
+    ],
+    "fix_description": "Requires investigation of Configuration Client AFKS import tool, not Web Client code.",
+    "fix_files": [],
+    "status": "VALID BUG — different codebase (Configuration Client)"
+  },
+  "CSFMD-10862": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM (Requires Review)",
+    "root_cause": "Keyword panel collapses when 'Set Property Value From Keyword Record' ad hoc task is executed on MIKG documents. The workflow task handler triggers a panel refresh via WorkflowTaskHandler.js but the MIKG re-render fails. Server-side SOA call likely returns incomplete keyword record data.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Web.Resources.Scripts/WorkflowTaskHandler.js",
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanel.js"
+    ],
+    "fix_description": "Requires workflow task handler debugging — panel collapse suggests null/empty MIKG response.",
+    "fix_files": [],
+    "status": "VALID BUG — needs workflow task handler investigation"
+  },
+  "CSFMD-10842": {
+    "valid": true,
+    "fixable": false,
+    "severity": "LOW",
+    "root_cause": "CSS/rendering issue with datagrid filter icon. Not in keyword panel code.",
+    "affected_files": [
+      "Datagrid CSS / GenericViewer (not analyzed)"
+    ],
+    "fix_description": "Requires UI/CSS investigation in GenericViewer or datagrid component.",
+    "fix_files": [],
+    "status": "VALID BUG — CSS/UI rendering, not in analyzed codebase"
+  },
+  "CSFMD-10784": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Unity Client keyword panel error on auto-open after import. This is a Unity Client issue, not Web Client.",
+    "affected_files": [
+      "Unity Client codebase (not in TFS Web libraries analyzed)"
+    ],
+    "fix_description": "Unity Client issue — outside analyzed Web Client codebase.",
+    "fix_files": [],
+    "status": "VALID BUG — Unity Client (different codebase)"
+  },
+  "CSFMD-10489": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Unity Client duplicate keyword fieldname inconsistency. Unity Client only.",
+    "affected_files": [
+      "Unity Client codebase"
+    ],
+    "fix_description": "Unity Client issue.",
+    "fix_files": [],
+    "status": "VALID BUG — Unity Client"
+  },
+  "CSFMD-10370": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Floating point keyword update/delete fails in Oracle due to rounding. This is a Core/database layer issue with Oracle number precision, not a Web Client JS issue.",
+    "affected_files": [
+      "Core database layer (Oracle-specific)"
+    ],
+    "fix_description": "Requires Oracle database layer investigation — floating point precision issue.",
+    "fix_files": [],
+    "status": "VALID BUG — Core/Oracle database layer"
+  },
+  "CSFMD-10335": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Expanding AFK with hidden keyword creates extra MIKG instance in Document Packaging. Related to how PerformAutofillKeysetExpansion handles hidden keywords in MIKG. KeywordHandler.cs PerformAutofillKeysetExpansion passes 'ForceMask' for hidden but the server may be creating duplicate instances.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/KeywordHandler.cs",
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanel.js"
+    ],
+    "fix_description": "Server-side MIKG handling during AFK expansion with hidden keywords needs investigation.",
+    "fix_files": [],
+    "status": "VALID BUG — server-side MIKG handling needs review"
+  },
+  "CSFMD-10277": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Workflow Reindex action sets a default document type but the keyword panel does not refresh to show that DT's keywords. ReindexController.cs and Reindex_action.aspx.cs likely do not trigger a panel rebuild when the workflow sets a default DT.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/ReindexController.cs",
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/EmbeddedPageProvider/Pages/Reindex_action.aspx.cs"
+    ],
+    "fix_description": "Workflow Reindex needs to trigger keyword panel refresh when default DT is set.",
+    "fix_files": [],
+    "status": "VALID BUG — workflow/reindex integration needs investigation"
+  },
+  "CSFMD-10271": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Unity Client document lock persistence across sessions. Unity Client only.",
+    "affected_files": [
+      "Unity Client codebase"
+    ],
+    "fix_description": "Unity Client issue.",
+    "fix_files": [],
+    "status": "VALID BUG — Unity Client"
+  },
+  "CSFMD-9996": {
+    "valid": true,
+    "fixable": false,
+    "severity": "LOW",
+    "root_cause": "DataValidation.js normalizeData() for Vietnamese ('vi'/'vi-vn') locale: the date/time parsing works but a red dotted line appears in UI. The Vietnamese locale IS defined in DataValidation.js (lines 132-133, 791, 1384) with correct decimal/currency settings. The 'red dotted line' is likely a CSS validation indicator triggered by a minor parsing issue in the time portion.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Web.Resources.Scripts/DataValidation.js"
+    ],
+    "fix_description": "Need to test exact DateTime input that triggers the CSS validation state for 'vi' locale.",
+    "fix_files": [],
+    "status": "VALID BUG — locale-specific DateTime CSS validation, needs specific repro"
+  },
+  "CSFMD-9868": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM (Requires Review)",
+    "root_cause": "Hungarian ('hu'/'hu-hu') DateTime format in DataValidation.js uses 'yyyy. MM. dd. ' (with trailing period and space). The format IS defined (line 1815) and the localized date output IS handled (line 2292). However, the version-specific DataValidation2022.js may override this format incorrectly for certain Windows Server builds. The version-specific file could not be downloaded for verification.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Web.Resources.Scripts/DataValidation.js",
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Web.Resources.Scripts/DataValidation2022.js"
+    ],
+    "fix_description": "Need to verify Hungarian date format in DataValidation2022.js matches base DataValidation.js.",
+    "fix_files": [],
+    "status": "VALID BUG — needs DataValidation2022.js Hungarian format verification"
+  },
+  "CSFMD-9718": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Unity Client error switching documents with MIKG keywords. Unity Client only.",
+    "affected_files": [
+      "Unity Client codebase"
+    ],
+    "fix_description": "Unity Client issue.",
+    "fix_files": [],
+    "status": "VALID BUG — Unity Client"
+  },
+  "CSFMD-9717": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Unity Client NullPointerException while switching documents. Unity Client only.",
+    "affected_files": [
+      "Unity Client codebase"
+    ],
+    "fix_description": "Unity Client issue.",
+    "fix_files": [],
+    "status": "VALID BUG — Unity Client"
+  },
+  "CSFMD-10912": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM (Requires Review)",
+    "root_cause": "AFKS prompts twice in WorkView document import. Likely a double-trigger of the autofill expansion logic when WorkView invokes the import dialog.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanel.js"
+    ],
+    "fix_description": "WorkView import calling AFKS expansion handler twice — needs event deduplication.",
+    "fix_files": [],
+    "status": "VALID BUG — WorkView/AFKS integration"
+  },
+  "CSFMD-6855": {
+    "valid": false,
+    "fixable": false,
+    "severity": "LOW (Intermittent)",
+    "root_cause": "NVDA screen reader intermittently reads truncated aria-label. This is an intermittent accessibility/AT issue that may be an NVDA bug rather than an application bug. The button's aria-label is likely set correctly but NVDA clips it.",
+    "affected_files": [],
+    "fix_description": "Likely NOT a valid application bug — intermittent NVDA screen reader issue.",
+    "fix_files": [],
+    "status": "FLAG: LIKELY INVALID — intermittent NVDA screen reader issue, not application bug"
+  },
+  "CSFMD-6812": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Document retrieval with string literal operator (\") for first keyword instance and equals (=) for second instance with AND operator returns wrong results. This is a query builder / retrieval engine issue, not in the Web Client keyword panel.",
+    "affected_files": [
+      "Core query/retrieval engine"
+    ],
+    "fix_description": "Query builder logic issue — outside Web Client codebase.",
+    "fix_files": [],
+    "status": "VALID BUG — Core retrieval engine"
+  },
+  "CSFMD-6397": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "MIKG default values not populated on new instance creation. KeywordPanel.js duplicateRow/duplicateRecord functions copy the row HTML but may not re-apply default values from the keyword type configuration.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanel.js"
+    ],
+    "fix_description": "MIKG row duplication should apply strDefaultValue after creating new instance.",
+    "fix_files": [],
+    "status": "VALID BUG — MIKG default value handling in row duplication"
+  },
+  "CSFMD-6315": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Invisible keywords not visible in Custom Query. Configuration/query mode issue.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Configuration/CustomQueryMode.cs"
+    ],
+    "fix_description": "CustomQueryMode.cs may be filtering out Invisible keyword types.",
+    "fix_files": [],
+    "status": "VALID BUG — CustomQueryMode configuration filtering"
+  },
+  "CSFMD-6305": {
+    "valid": true,
+    "fixable": false,
+    "severity": "LOW",
+    "root_cause": "Keytypeflags2 column in Keytypetable shows 6 instead of 2 for case-sensitive dual table alphanumeric keywords. This is a database/Configuration Client issue.",
+    "affected_files": [
+      "Configuration Client / Core database layer"
+    ],
+    "fix_description": "Configuration Client keyword type flag setting issue.",
+    "fix_files": [],
+    "status": "VALID BUG — Configuration Client / database layer"
+  },
+  "CSFMD-6293": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Check-in without comment despite comment settings. EDM checkout module issue.",
+    "affected_files": [
+      "EDM checkout module"
+    ],
+    "fix_description": "EDM module comment enforcement issue.",
+    "fix_files": [],
+    "status": "VALID BUG — EDM module"
+  },
+  "CSFMD-6211": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Currency keyword autoFill in Unity Client dropdown. Unity Client only.",
+    "affected_files": [
+      "Unity Client codebase"
+    ],
+    "fix_description": "Unity Client currency dropdown issue.",
+    "fix_files": [],
+    "status": "VALID BUG — Unity Client"
+  },
+  
+  "CSFMD-6153": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Multiple autofill records expansion with SIKG and 'Expand all Matching Instances' causes unexpected behavior. KeywordHandler.cs PerformAutofillKeysetExpansion may not handle SIKG constraints correctly when multiple matches found.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/KeywordHandler.cs"
+    ],
+    "fix_description": "Server-side AFKS expansion with SIKG needs instance constraint enforcement.",
+    "fix_files": [],
+    "status": "VALID BUG — AFKS/SIKG server-side"
+  },
+  "CSFMD-6152": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Same as CSFMD-6153 but for multiple autofill records with SIKG (non-expand-all).",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/KeywordHandler.cs"
+    ],
+    "fix_description": "Same fix area as CSFMD-6153.",
+    "fix_files": [],
+    "status": "VALID BUG — AFKS/SIKG (related to CSFMD-6153)"
+  },
+  "CSFMD-6151": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Show Comment button in checked-out document list doesn't work. EDM module UI issue.",
+    "affected_files": [
+      "EDM checkout list UI"
+    ],
+    "fix_description": "EDM Show Comment button click handler issue.",
+    "fix_files": [],
+    "status": "VALID BUG — EDM module"
+  },
+  "CSFMD-6317": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "MIKGs not duplicating correctly in retrieval Keyword Panel. KeywordPanel.js row duplication for retrieval mode may not handle MIKG records properly.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanel.js"
+    ],
+    "fix_description": "MIKG duplication in retrieval mode needs investigation.",
+    "fix_files": [],
+    "status": "VALID BUG — keyword panel MIKG duplication"
+  },
+  "CSFMD-6370": {
+    "valid": true,
+    "fixable": false,
+    "severity": "LOW",
+    "root_cause": "Version name/number issue for revised documents. Versioning/revision display issue.",
+    "affected_files": [
+      "Web Client revision display"
+    ],
+    "fix_description": "Revision version name/number display issue.",
+    "fix_files": [],
+    "status": "VALID BUG — versioning display"
+  },
+  "CSFMD-2557": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "root_cause": "Security Keywords added with invalid values in Web Client Admin Panel. Admin panel validation insufficient for security keyword values.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Web.Administration"
+    ],
+    "fix_description": "Web Administration security keyword validation needs strengthening.",
+    "fix_files": [],
+    "status": "VALID BUG — Web Administration panel"
+  },
+  "CSFMD-10973": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-10T16:37:49.585399",
+    "summary": "For a formatted keyword with Full Field Entry Not required, in web client , user is not able to use 'Backspace' or enter text for editing the field in Add/Modify Keywords"
+  },
+  "CSFMD-10502": {
+    "valid": true,
+    "fixable": false,
+    "severity": "REQUIRES REVIEW",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-10T16:46:55.477144",
+    "summary": "OBUPG – Re-Index button becomes unresponsive when using the 'Drag and drop' feature when processing documents through Workflow within the web client."
+  }
+}

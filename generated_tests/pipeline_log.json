@@ -1,0 +1,25 @@
+[
+  {
+    "timestamp": "2026-04-10T16:37:36.117860",
+    "status_filter": "New",
+    "dry_run": true,
+    "bugs_fetched": 1,
+    "bugs_new": 1,
+    "bugs_analyzed": 1,
+    "bugs_fixed": 0,
+    "bugs_flagged": 0,
+    "prs_created": []
+  },
+  {
+    "timestamp": "2026-04-10T16:46:49.380296",
+    "status_filter": "New",
+    "dry_run": true,
+    "bugs_fetched": 1,
+    "bugs_new": 1,
+    "bugs_analyzed": 1,
+    "bugs_fixed": 0,
+    "bugs_flagged": 0,
+    "prs_created": []
+  }
+  
+]
