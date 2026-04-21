@@ -12,7 +12,14 @@
       "fixes/EmbeddedScripts.cs",
       "fixes/DataValidation2025.js"
     ],
-    "status": "FIX CREATED"
+    "status": "FIX CREATED",
+    "summary": "Windows Server 2025: Getting \"DataValidation reference Hyland.Web.Resources.Scripts.DataValidation2025.js is invalid. Resorting to default.\" error while trying to access the AppNet url for the first time",
+    "priority": "Medium",
+    "codebase": "Web Client",
+    "pr_url": "",
+    "branch": "",
+    "tfs_url": "http://dev-tfs:8080/tfs/HylandCollection/OnBase/_versionControl/",
+    "fix_location": "fixes/EmbeddedScripts.cs, fixes/DataValidation2025.js"
   },
   "CSFMD-6429": {
     "valid": true,
@@ -25,7 +32,10 @@
     ],
     "fix_description": "In KeywordPanelItem.js finishGettingQueryKeyword(), when cascadingDataSetID is set, also check for hidden keyword values (element.type === 'hidden') and include their stored value in the cascading query XML. The hidden keyword's value is stored in element.getAttribute('strDefaultValue') or a hidden input. This requires passing hidden parent values to ExpandCascadingDataSet.",
     "fix_files": [],
-    "status": "ROOT CAUSE IDENTIFIED — requires deeper business logic review before fixing"
+    "status": "ROOT CAUSE IDENTIFIED — requires deeper business logic review before fixing",
+    "summary": "Web Client - 'Child' Keywords within a Cascading Dataset have no selectable values when the 'Parent' Keyword--which is a 'Child' of the Root value--is hidden.",
+    "priority": "Highest",
+    "codebase": "Web Client"
   },
   "CSFMD-10991": {
     "valid": true,
@@ -37,7 +47,8 @@
     ],
     "fix_description": "Requires investigation of Configuration Client AFKS import tool, not Web Client code.",
     "fix_files": [],
-    "status": "VALID BUG — different codebase (Configuration Client)"
+    "status": "VALID BUG — different codebase (Configuration Client)",
+    "codebase": "Configuration Client"
   },
   "CSFMD-10862": {
     "valid": true,
@@ -50,7 +61,10 @@
     ],
     "fix_description": "Requires workflow task handler debugging — panel collapse suggests null/empty MIKG response.",
     "fix_files": [],
-    "status": "VALID BUG — needs workflow task handler investigation"
+    "status": "VALID BUG — needs workflow task handler investigation",
+    "summary": "Keyword panel is collapsing in both Unity and Web client upon executing \"Set Property Value From Keyword Record\"  ad hoc task for document having MIKG keyword set.",
+    "priority": "Requires Review",
+    "codebase": "Unity Client"
   },
   "CSFMD-10842": {
     "valid": true,
@@ -62,7 +76,10 @@
     ],
     "fix_description": "Requires UI/CSS investigation in GenericViewer or datagrid component.",
     "fix_files": [],
-    "status": "VALID BUG — CSS/UI rendering, not in analyzed codebase"
+    "status": "VALID BUG — CSS/UI rendering, not in analyzed codebase",
+    "summary": "Correct Rendering of Datagrid Filter Icon and Artifact",
+    "priority": "Medium",
+    "codebase": "Web Client"
   },
   "CSFMD-10784": {
     "valid": true,
@@ -74,7 +91,10 @@
     ],
     "fix_description": "Unity Client issue — outside analyzed Web Client codebase.",
     "fix_files": [],
-    "status": "VALID BUG — Unity Client (different codebase)"
+    "status": "VALID BUG — Unity Client (different codebase)",
+    "summary": "Unity Client: Keyword panel error when document auto-open after import",
+    "priority": "Medium",
+    "codebase": "Unity Client"
   },
   "CSFMD-10489": {
     "valid": true,
@@ -86,7 +106,10 @@
     ],
     "fix_description": "Unity Client issue.",
     "fix_files": [],
-    "status": "VALID BUG — Unity Client"
+    "status": "VALID BUG — Unity Client",
+    "summary": "In Unity Client duplicate keyword's fieldname's is  inconsistent over the builds",
+    "priority": "Medium",
+    "codebase": "Unity Client"
   },
   "CSFMD-10370": {
     "valid": true,
@@ -98,7 +121,10 @@
     ],
     "fix_description": "Requires Oracle database layer investigation — floating point precision issue.",
     "fix_files": [],
-    "status": "VALID BUG — Core/Oracle database layer"
+    "status": "VALID BUG — Core/Oracle database layer",
+    "summary": "Unable to update/delete an existing Floating Point Keyword in the Core when using an Oracle database and the number is rounded",
+    "priority": "Medium",
+    "codebase": "Web Client"
   },
   "CSFMD-10335": {
     "valid": true,
@@ -111,7 +137,10 @@
     ],
     "fix_description": "Server-side MIKG handling during AFK expansion with hidden keywords needs investigation.",
     "fix_files": [],
-    "status": "VALID BUG — server-side MIKG handling needs review"
+    "status": "VALID BUG — server-side MIKG handling needs review",
+    "summary": "Web Client [Document Packaging]: Expanding AFK with hidden keyword creates an extra instance of MIKG",
+    "priority": "Medium",
+    "codebase": "Web Client"
   },
   "CSFMD-10277": {
     "valid": true,
@@ -124,7 +153,10 @@
     ],
     "fix_description": "Workflow Reindex needs to trigger keyword panel refresh when default DT is set.",
     "fix_files": [],
-    "status": "VALID BUG — workflow/reindex integration needs investigation"
+    "status": "VALID BUG — workflow/reindex integration needs investigation",
+    "summary": "Web Client [WorkFlow]: When default document type is set up for an Reindex workflow action, keyword panel is not refreshed to default document type keywords.",
+    "priority": "Medium",
+    "codebase": "Web Client"
   },
   "CSFMD-10271": {
     "valid": true,
@@ -136,7 +168,10 @@
     ],
     "fix_description": "Unity Client issue.",
     "fix_files": [],
-    "status": "VALID BUG — Unity Client"
+    "status": "VALID BUG — Unity Client",
+    "summary": "In Unity Client, once a document is opened and viewed, then with the same user is getting document  lock  pop up each time, at their next subsequent login ",
+    "priority": "Medium",
+    "codebase": "Unity Client"
   },
   "CSFMD-9996": {
     "valid": true,
@@ -148,7 +183,10 @@
     ],
     "fix_description": "Need to test exact DateTime input that triggers the CSS validation state for 'vi' locale.",
     "fix_files": [],
-    "status": "VALID BUG — locale-specific DateTime CSS validation, needs specific repro"
+    "status": "VALID BUG — locale-specific DateTime CSS validation, needs specific repro",
+    "summary": "Data Validation - normalizeData() function with DateTime is able to parse time part for different locales but for language \"vi\" a red dotted line is appearing in UI",
+    "priority": "Low",
+    "codebase": "Web Client"
   },
   "CSFMD-9868": {
     "valid": true,
@@ -161,7 +199,10 @@
     ],
     "fix_description": "Need to verify Hungarian date format in DataValidation2022.js matches base DataValidation.js.",
     "fix_files": [],
-    "status": "VALID BUG — needs DataValidation2022.js Hungarian format verification"
+    "status": "VALID BUG — needs DataValidation2022.js Hungarian format verification",
+    "summary": "Data Validation - DateTime format provided from DataValidation JS is not working in Hungary",
+    "priority": "Requires Review",
+    "codebase": "Web Client"
   },
   "CSFMD-9718": {
     "valid": true,
@@ -173,7 +214,10 @@
     ],
     "fix_description": "Unity Client issue.",
     "fix_files": [],
-    "status": "VALID BUG — Unity Client"
+    "status": "VALID BUG — Unity Client",
+    "summary": "[Unity Client] Throws error while switching documents with mikg keywords",
+    "priority": "Medium",
+    "codebase": "Unity Client"
   },
   "CSFMD-9717": {
     "valid": true,
@@ -185,7 +229,10 @@
     ],
     "fix_description": "Unity Client issue.",
     "fix_files": [],
-    "status": "VALID BUG — Unity Client"
+    "status": "VALID BUG — Unity Client",
+    "summary": "[Unity Client] Throws Null pointer exception while switching documents",
+    "priority": "Medium",
+    "codebase": "Unity Client"
   },
   "CSFMD-10912": {
     "valid": true,
@@ -197,7 +244,10 @@
     ],
     "fix_description": "WorkView import calling AFKS expansion handler twice — needs event deduplication.",
     "fix_files": [],
-    "status": "VALID BUG — WorkView/AFKS integration"
+    "status": "VALID BUG — WorkView/AFKS integration",
+    "summary": "AFKS prompts twice to select data set when importing a document in WorkView",
+    "priority": "Requires Review",
+    "codebase": "Web Client"
   },
   "CSFMD-6855": {
     "valid": false,
@@ -207,7 +257,10 @@
     "affected_files": [],
     "fix_description": "Likely NOT a valid application bug — intermittent NVDA screen reader issue.",
     "fix_files": [],
-    "status": "FLAG: LIKELY INVALID — intermittent NVDA screen reader issue, not application bug"
+    "status": "FLAG: LIKELY INVALID — intermittent NVDA screen reader issue, not application bug",
+    "summary": "Intermittent Issue: “how instructions button collapsed S” is announced/displayed on NVDA screen viewer instead of “Show instructions button collapsed” on Custom Query Screen",
+    "priority": "Low",
+    "codebase": "Core / Other"
   },
   "CSFMD-6812": {
     "valid": true,
@@ -219,7 +272,10 @@
     ],
     "fix_description": "Query builder logic issue — outside Web Client codebase.",
     "fix_files": [],
-    "status": "VALID BUG — Core retrieval engine"
+    "status": "VALID BUG — Core retrieval engine",
+    "summary": "Document Retrieval- While retrieving a document using the 'string literal' operator (\") for the first instance of the keyword and (=) for the second instance of the same keyword, along with AND operator set for them, it's not returning the correct result",
+    "priority": "Medium",
+    "codebase": "Web Client"
   },
   "CSFMD-6397": {
     "valid": true,
@@ -231,7 +287,10 @@
     ],
     "fix_description": "MIKG row duplication should apply strDefaultValue after creating new instance.",
     "fix_files": [],
-    "status": "VALID BUG — MIKG default value handling in row duplication"
+    "status": "VALID BUG — MIKG default value handling in row duplication",
+    "summary": "Default Values configured in MIKG is not getting populated when user creates another instance",
+    "priority": "Medium",
+    "codebase": "Configuration Client"
   },
   "CSFMD-6315": {
     "valid": true,
@@ -243,7 +302,10 @@
     ],
     "fix_description": "CustomQueryMode.cs may be filtering out Invisible keyword types.",
     "fix_files": [],
-    "status": "VALID BUG — CustomQueryMode configuration filtering"
+    "status": "VALID BUG — CustomQueryMode configuration filtering",
+    "summary": "Keyword configured as Invisible are not visible in Custom Query interface",
+    "priority": "Medium",
+    "codebase": "Configuration Client"
   },
   "CSFMD-6305": {
     "valid": true,
@@ -255,7 +317,10 @@
     ],
     "fix_description": "Configuration Client keyword type flag setting issue.",
     "fix_files": [],
-    "status": "VALID BUG — Configuration Client / database layer"
+    "status": "VALID BUG — Configuration Client / database layer",
+    "summary": "If the case of a dual table (Alphanumeric) keyword is sensitive, the Keytypeflags2 column in the Keytypetable should have a value of 2, yet it is showing 6.",
+    "priority": "Medium",
+    "codebase": "Configuration Client"
   },
   "CSFMD-6293": {
     "valid": true,
@@ -267,7 +332,10 @@
     ],
     "fix_description": "EDM module comment enforcement issue.",
     "fix_files": [],
-    "status": "VALID BUG — EDM module"
+    "status": "VALID BUG — EDM module",
+    "summary": "Doctype has with comment settings but  check-in can be done without entering comment ",
+    "priority": "Medium",
+    "codebase": "EDM Module"
   },
   "CSFMD-6211": {
     "valid": true,
@@ -279,9 +347,11 @@
     ],
     "fix_description": "Unity Client currency dropdown issue.",
     "fix_files": [],
-    "status": "VALID BUG — Unity Client"
+    "status": "VALID BUG — Unity Client",
+    "summary": "The value of the specified currency is not automatically filled in the input field when the user selects the value from the drop-down list for the specified currency keyword in Unity Client. ",
+    "priority": "Medium",
+    "codebase": "Unity Client"
   },
-  
   "CSFMD-6153": {
     "valid": true,
     "fixable": false,
@@ -292,7 +362,10 @@
     ],
     "fix_description": "Server-side AFKS expansion with SIKG needs instance constraint enforcement.",
     "fix_files": [],
-    "status": "VALID BUG — AFKS/SIKG server-side"
+    "status": "VALID BUG — AFKS/SIKG server-side",
+    "summary": "Unexpected behavior observed while expanding multiple autofill records to a document containing Single Instance Keyword Group(SIKG) when the \"Expand all Matching Instances\" AutoFill Setting is enabled.",
+    "priority": "Medium",
+    "codebase": "Core / Other"
   },
   "CSFMD-6152": {
     "valid": true,
@@ -304,7 +377,10 @@
     ],
     "fix_description": "Same fix area as CSFMD-6153.",
     "fix_files": [],
-    "status": "VALID BUG — AFKS/SIKG (related to CSFMD-6153)"
+    "status": "VALID BUG — AFKS/SIKG (related to CSFMD-6153)",
+    "summary": "Unexpected behavior observed while applying multiple autofill records to a document containing Single Instance Keyword Group(SIKG)",
+    "priority": "Medium",
+    "codebase": "Core / Other"
   },
   "CSFMD-6151": {
     "valid": true,
@@ -316,7 +392,10 @@
     ],
     "fix_description": "EDM Show Comment button click handler issue.",
     "fix_files": [],
-    "status": "VALID BUG — EDM module"
+    "status": "VALID BUG — EDM module",
+    "summary": "Show Comment button in Doc checked out list  doesnot work ...If it is clicked nothing is showing ",
+    "priority": "Medium",
+    "codebase": "EDM Module"
   },
   "CSFMD-6317": {
     "valid": true,
@@ -328,7 +407,10 @@
     ],
     "fix_description": "MIKG duplication in retrieval mode needs investigation.",
     "fix_files": [],
-    "status": "VALID BUG — keyword panel MIKG duplication"
+    "status": "VALID BUG — keyword panel MIKG duplication",
+    "summary": "MIKGs not duplicating correctly in retrieval Keyword Panel",
+    "priority": "Medium",
+    "codebase": "Web Client"
   },
   "CSFMD-6370": {
     "valid": true,
@@ -340,7 +422,10 @@
     ],
     "fix_description": "Revision version name/number display issue.",
     "fix_files": [],
-    "status": "VALID BUG — versioning display"
+    "status": "VALID BUG — versioning display",
+    "summary": "Version name and Version number issue for revised documents in the Web Client",
+    "priority": "Low",
+    "codebase": "Web Client"
   },
   "CSFMD-2557": {
     "valid": true,
@@ -352,7 +437,10 @@
     ],
     "fix_description": "Web Administration security keyword validation needs strengthening.",
     "fix_files": [],
-    "status": "VALID BUG — Web Administration panel"
+    "status": "VALID BUG — Web Administration panel",
+    "summary": "Security Keywords added with invalid values within the Web Client Admin Panel are behaving incorrectly",
+    "priority": "Medium",
+    "codebase": "Web Client"
   },
   "CSFMD-10973": {
     "valid": true,
@@ -379,5 +467,720 @@
     "status": "NEEDS_MANUAL_REVIEW",
     "analyzed_at": "2026-04-10T16:46:55.477144",
     "summary": "OBUPG – Re-Index button becomes unresponsive when using the 'Drag and drop' feature when processing documents through Workflow within the web client."
+  },
+  "CSFMD-9894": {
+    "valid": true,
+    "fixable": false,
+    "severity": "HIGH",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:14.430773",
+    "summary": "The following error is thrown when the 'Replace Keyword' action is executed with an intentionally null value for a keyword that is apart of a Single Keyword Group: ORA-00001: unique constraint violated"
+  },
+  "CSFMD-10960": {
+    "valid": true,
+    "fixable": false,
+    "severity": "REQUIRES REVIEW",
+    "codebase": "Unity Client",
+    "root_cause": "Requires manual investigation. Classified as: Unity Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Unity Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:14.430980",
+    "summary": "Re-indexing works within the Web Client but fails within Unity Client when different Hidden and Read Only Settings are set on the Keywords"
+  },
+  "CSFMD-10951": {
+    "valid": true,
+    "fixable": false,
+    "severity": "REQUIRES REVIEW",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:18.715014",
+    "summary": "When executing a system task \"Upload Documents\" on a Workview object, the keywords are not carried over from the object to the document import screen within the Web Client."
+  },
+  "CSFMD-11031": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:18.715934",
+    "summary": "CLONE - DUMMY for testing No action is required"
+  },
+  "CSFMD-10466": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:21.129073",
+    "summary": "Web Client: Failing to load keyword panel in Add/Modify Keyword/Reindex/CreateNewDocument panel when Mask Keyword is part of the Document Type in Oracle database."
+  },
+  "CSFMD-10341": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Keyword panel rendering failure — likely null/empty response from server.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanel.js"
+    ],
+    "fix_description": "Add null-check guards in keyword panel rendering logic.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:23.287766",
+    "summary": "Web Client: Restricted user is unable to Generate package when ReadOnly Keywords are modified using AFK/RAFK"
+  },
+  "CSFMD-10275": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Document type switching does not properly transfer keyword values.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanel.js"
+    ],
+    "fix_description": "Review keyword value propagation during document type switch.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:25.312378",
+    "summary": "Web Client [WorkFlow]: When switching document with hidden keywords, values from SIKG and MIKG is not propagating."
+  },
+  "CSFMD-10145": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Unity Client",
+    "root_cause": "Requires manual investigation. Classified as: Unity Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Unity Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:25.313254",
+    "summary": "Within the Unity Client if a Keyword value is entered that includes the same characters, in the same order, as the Static characters configured within the Masking of said Keyword, the values are being removed and the Keyword is not being saved."
+  },
+  "CSFMD-10049": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:28.397834",
+    "summary": "Reverse Autofill in Web Client Utilizing Special Characters Will Return No Results"
+  },
+  "CSFMD-10050": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:28.738438",
+    "summary": "Keyword Data Set Import box doesn't respect the filename field."
+  },
+  "CSFMD-10030": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Configuration Client",
+    "root_cause": "Requires manual investigation. Classified as: Configuration Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Configuration Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:28.739370",
+    "summary": "Some configuration automatically adds non-medical docs to hsi.mrorphandocs"
+  },
+  "CSFMD-9923": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:30.538643",
+    "summary": "Web Client doesn't respect keyword mask when there is an external data set involved."
+  },
+  "CSFMD-9895": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Document type switching does not properly transfer keyword values.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanel.js"
+    ],
+    "fix_description": "Review keyword value propagation during document type switch.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:32.862412",
+    "summary": "Web Client- Clear Keywords is not able to clear the keyword panel at once after expanding an AFK then switching it to a different Document type"
+  },
+  "CSFMD-9845": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:32.862650",
+    "summary": "Migrating Keyword Groups is considerably slower than Single Keywords"
+  },
+  "CSFMD-9721": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "EDM Module",
+    "root_cause": "Keyword panel rendering failure — likely null/empty response from server.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanel.js"
+    ],
+    "fix_description": "Add null-check guards in keyword panel rendering logic.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:32.862782",
+    "summary": "Custom Validation scripts on the web client are giving browser error: 'because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled.'"
+  },
+  "CSFMD-9663": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Unity Client",
+    "root_cause": "Requires manual investigation. Classified as: Unity Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Unity Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:32.862897",
+    "summary": "UnityClient_Autofill : Displays empty value for Num20 keyword in Multi select AFKS pop up when the value is of MAX 20 digits"
+  },
+  "CSFMD-2543": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:34.991480",
+    "summary": "Web Client Document Import doesn't preserve Keyword values when changing to another Document in Document Queue"
+  },
+  "CSFMD-2514": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:34.992114",
+    "summary": "The message ”There are no keywords available for this document type.” can be erroneously displayed when the \"UseNewKeywordDataCacheImplementation\" feature flag is enabled"
+  },
+  "CSFMD-2384": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:34.992841",
+    "summary": "Re-indexing a document using keywords that belong to an existing document and selecting \"Save as Revision\" in the existing document revision dialog results in errors shown in Diagnostics Console"
+  },
+  "CSFMD-2383": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:34.993408",
+    "summary": "Re-indexing a document using keywords that belong to an existing document and selecting \"Save as Revision\" in the existing document revision dialog results in errors shown in Diagnostics Console and a document lock on doc ID 0"
+  },
+  "CSFMD-2296": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Unity Client",
+    "root_cause": "Requires manual investigation. Classified as: Unity Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Unity Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:34.993924",
+    "summary": "Deleting a Document Type with a document template assigned causes Unity to not display any available templates"
+  },
+  "CSFMD-2283": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "EDM Module",
+    "root_cause": "Requires manual investigation. Classified as: EDM Module",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in EDM Module codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:34.994097",
+    "summary": "'Document is no longer checked out. A local copy containing your changes can be recovered.' is displayed when viewing “My Checkouts” after another OnBase user on the same workstation as checks out a document"
+  },
+  "CSFMD-2270": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "MIKG/SIKG instance handling issue during autofill expansion.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/KeywordHandler.cs"
+    ],
+    "fix_description": "Review server-side MIKG/SIKG instance management during AFKS expansion.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:34.994476",
+    "summary": "Losing a MIKG instance when using a No Access Restricted Keywords User to re-index into a Document Type with HID Keywords"
+  },
+  "CSFMD-2012": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:34.994902",
+    "summary": "Backport 22.1 - Merging an existing value into a masked keyword dataset results in an ODBC error"
+  },
+  "CSFMD-1961": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:34.995071",
+    "summary": "Encrypted AutoFill Keyword Sets will not expand in the Core dependent on maxlength values"
+  },
+  "CSFMD-1946": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:36.821669",
+    "summary": "Keyword panel is cleared after performing an Import when multiple files are dragged in for Import"
+  },
+  "CSFMD-1930": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:37.960331",
+    "summary": "Importing with the following Workstation Options enabled \"Clear Keywords After Import\" and \"Do Not Close Dialog After Import\" is clearing default values"
+  },
+  "CSFMD-1914": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:39.241389",
+    "summary": "Web Client: Stamp Version Context Menu Option Present on Revisions Prior to Most Recent Stamp. "
+  },
+  "CSFMD-1911": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:40.646674",
+    "summary": "Web Client: Users Without Privilege to Create Revisions can Re-Index a Document as a Revision of Another Document "
+  },
+  "CSFMD-1769": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:40.647951",
+    "summary": "Exception has been thrown message in Document Separation"
+  },
+  "CSFMD-1753": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:40.648814",
+    "summary": "ChecksumCreator RemoveURL does not remove https urls from the querystring parameter"
+  },
+  "CSFMD-1739": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Unity Client",
+    "root_cause": "Requires manual investigation. Classified as: Unity Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Unity Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:40.649452",
+    "summary": "Unity: When importing multiple image files as a multipage image in ad hoc import, processing file name keywords only display the first file's name in the kwp, but all file names are added as processing file name keywords upon import"
+  },
+  "CSFMD-1693": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Unity Client",
+    "root_cause": "Requires manual investigation. Classified as: Unity Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Unity Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:40.649653",
+    "summary": "EP5 Unity: Upload contexts which inherit keywords are allowing restricted users to clear read-only keywords"
+  },
+  "CSFMD-1692": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Unity Client",
+    "root_cause": "Document type switching does not properly transfer keyword values.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanel.js"
+    ],
+    "fix_description": "Review keyword value propagation during document type switch.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:40.649893",
+    "summary": "Unity - EDM Checkout: Server-side restricted keyword validation fails if the user changes the doc type in the Save as New Document keyword panel"
+  },
+  "CSFMD-1673": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:40.650081",
+    "summary": "An untranslated message string found when re-index a separate document "
+  },
+  "CSFMD-1667": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:40.650281",
+    "summary": "Spaces missing from warning message when a user in Doc Sep changes a document's document type in a way that causes restricted keyword security degradation"
+  },
+  "CSFMD-1528": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Unity Client",
+    "root_cause": "Security mask keyword handling issue.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanelItem.js"
+    ],
+    "fix_description": "Review security mask validation and display logic.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:40.650466",
+    "summary": "Unity: Autofills are not properly handling security masked keywords"
+  },
+  "CSFMD-1453": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Unity Client",
+    "root_cause": "Requires manual investigation. Classified as: Unity Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Unity Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:40.650631",
+    "summary": "Unity: Unable to import document with reestablished connection after user's network connection was lost during import "
+  },
+  "CSFMD-1441": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:40.650768",
+    "summary": "Merging an existing value into a masked keyword dataset results in an ODBC error"
+  },
+  "CSFMD-1440": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:40.650918",
+    "summary": "Safari Upload Document giving Timeout Exception Window During Long-Running File Uploads"
+  },
+  "CSFMD-1327": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:41.789049",
+    "summary": "Web Client | IDOLToolbar.js receives an error when attempting to \"View Original Document\" for documents that do not display as images"
+  },
+  "CSFMD-1262": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Unity Client",
+    "root_cause": "Requires manual investigation. Classified as: Unity Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Unity Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:41.790029",
+    "summary": "Unity Client: When keywords are applied from a reverse autofill keyset with the Lock Applied Keywords setting enabled the keywords are not being locked"
+  },
+  "CSFMD-1204": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "MIKG/SIKG instance handling issue during autofill expansion.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/KeywordHandler.cs"
+    ],
+    "fix_description": "Review server-side MIKG/SIKG instance management during AFKS expansion.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:44.168661",
+    "summary": "MIKG Encrypted Keywords cause pseudo-error message in Web Client"
+  },
+  "CSFMD-1133": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Locale-specific date/time format mismatch in DataValidation.js.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Web.Resources.Scripts/DataValidation.js"
+    ],
+    "fix_description": "Update locale date format definitions.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:44.169158",
+    "summary": "Invalid Date Format for Serbian locale"
+  },
+  "CSFMD-719": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Requires manual investigation. Classified as: Core / Other",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Core / Other codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:44.170157",
+    "summary": "SCR # 325782 - Incorrect entry for Document History when a restricted user clears MIKG with a hidden keyword"
+  },
+  "CSFMD-144": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Core / Other",
+    "root_cause": "Security mask keyword handling issue.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanelItem.js"
+    ],
+    "fix_description": "Review security mask validation and display logic.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:44.170509",
+    "summary": "Encrypted Security Mask Keywords are not behaving properly"
+  },
+  "CSFMD-64": {
+    "valid": true,
+    "fixable": false,
+    "severity": "MEDIUM",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:45.320179",
+    "summary": "Update Keyword Panel CSS classes to use ob-prefix"
+  },
+  "CSFMD-10836": {
+    "valid": true,
+    "fixable": false,
+    "severity": "LOW",
+    "codebase": "Web Client",
+    "root_cause": "Requires manual investigation. Classified as: Web Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Web Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:47.373009",
+    "summary": "Web Client: Error when we query RAFK lookup using keyword value when Mask is configured with leading + sign as static character"
+  },
+  "CSFMD-2093": {
+    "valid": true,
+    "fixable": false,
+    "severity": "LOW",
+    "codebase": "Configuration Client",
+    "root_cause": "Requires manual investigation. Classified as: Configuration Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Configuration Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:47.373407",
+    "summary": "Importing data into a Cascading Dataset that leverages a Keyword set to '250' characters is causing the OnBase Configuration Client to close unexpectedly."
+  },
+  "CSFMD-1771": {
+    "valid": true,
+    "fixable": false,
+    "severity": "LOW",
+    "codebase": "Unity Client",
+    "root_cause": "Requires manual investigation. Classified as: Unity Client",
+    "affected_files": [],
+    "fix_description": "Manual investigation needed in Unity Client codebase.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:47.374626",
+    "summary": "Unity: Document purged toast appears when attempting to re-index a document into a doctype with revisions enabled if \"save as revision\" is selected"
+  },
+  "CSFMD-1332": {
+    "valid": true,
+    "fixable": false,
+    "severity": "LOW",
+    "codebase": "Web Client",
+    "root_cause": "Keyword panel rendering failure — likely null/empty response from server.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanel.js"
+    ],
+    "fix_description": "Add null-check guards in keyword panel rendering logic.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:47.711014",
+    "summary": "Harmony - Keyword panel throws an exception for keywords that use masking"
+  },
+  "CSFMD-8913": {
+    "valid": true,
+    "fixable": false,
+    "severity": "LOWEST",
+    "codebase": "Web Client",
+    "root_cause": "MIKG/SIKG instance handling issue during autofill expansion.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/KeywordHandler.cs"
+    ],
+    "fix_description": "Review server-side MIKG/SIKG instance management during AFKS expansion.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:50.124264",
+    "summary": "[Web Client] AFKS - Pressing F6 or TAB While Placing Cursor On The Primary Keyword Field After Deleting Other Or Primary Keyword Field Doesn't Auto-Populate Keyword Fields"
+  },
+  "CSFMD-1527": {
+    "valid": true,
+    "fixable": false,
+    "severity": "LOWEST",
+    "codebase": "Core / Other",
+    "root_cause": "Security mask keyword handling issue.",
+    "affected_files": [
+      "$/OnBase/DEV/Core/OnBase.NET/Libraries/Hyland.Controls.Web/KeywordPanel/Scripts/KeywordPanelItem.js"
+    ],
+    "fix_description": "Review security mask validation and display logic.",
+    "fix_files": [],
+    "status": "NEEDS_MANUAL_REVIEW",
+    "analyzed_at": "2026-04-21T16:31:50.125544",
+    "summary": "Encypted Security Mask Keywords not behaving properly"
   }
 }

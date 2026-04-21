@@ -212,14 +212,16 @@ def priority_sort_key(bug: dict) -> int:
 
 # ── Fetch NEW bugs via JQL ─────────────────────────────────────────────────
 def fetch_new_bugs(status: str = "New") -> list[dict]:
-    """Fetch all bugs in CSFMD project with given status using JQL search.
+    """Fetch unassigned bugs in CSFMD project that are not Closed/Deferred.
     Uses /rest/api/3/search/jql (new endpoint, replaces deprecated /search).
     Returns list of bug dicts sorted by priority (high → low).
     """
     s = _get_session()
     jql = (
         f'project = {PROJECT_KEY} AND issuetype = Bug '
-        f'AND status = "{status}" ORDER BY priority ASC, created DESC'
+        f'AND assignee is EMPTY '
+        f'AND status NOT IN ("Closed", "Deferred", "Done", "Resolved") '
+        f'ORDER BY priority ASC, created DESC'
     )
     url = f"{JIRA_BASE_URL}/rest/api/3/search/jql"
     fields = "summary,status,priority,created,assignee,reporter,components,labels,description"

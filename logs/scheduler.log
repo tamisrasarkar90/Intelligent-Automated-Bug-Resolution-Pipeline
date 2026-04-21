@@ -195,4 +195,137 @@
   Skipped 28 already-tracked bug(s)
   0 new bug(s) to analyze
   All bugs already tracked. Exiting.
+^C======================================================================
+  CSFMD Bug Pipeline
+  2026-04-15 21:00:06
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+  Authenticated as Tamisra Sarkar
+  Fetched 28/0 bugs...
+  Found 28 bug(s)
+
+[2/6] Deduplicating against existing analysis...
+  Skipped 28 already-tracked bug(s)
+  0 new bug(s) to analyze
+  All bugs already tracked. Exiting.
+======================================================================
+  CSFMD Bug Pipeline
+  2026-04-16 09:00:06
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+  Authenticated as Tamisra Sarkar
+  Fetched 28/0 bugs...
+  Found 28 bug(s)
+
+[2/6] Deduplicating against existing analysis...
+  Skipped 28 already-tracked bug(s)
+  0 new bug(s) to analyze
+  All bugs already tracked. Exiting.
+======================================================================
+  CSFMD Bug Pipeline
+  2026-04-16 21:00:05
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+  Authenticated as Tamisra Sarkar
+  Fetched 28/0 bugs...
+  Found 28 bug(s)
+
+[2/6] Deduplicating against existing analysis...
+  Skipped 28 already-tracked bug(s)
+  0 new bug(s) to analyze
+  All bugs already tracked. Exiting.
+======================================================================
+  CSFMD Bug Pipeline
+  2026-04-17 13:00:06
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+  Authenticated as Tamisra Sarkar
+  Fetched 28/0 bugs...
+  Found 28 bug(s)
+
+[2/6] Deduplicating against existing analysis...
+  Skipped 28 already-tracked bug(s)
+  0 new bug(s) to analyze
+  All bugs already tracked. Exiting.
+======================================================================
+  CSFMD Bug Pipeline
+  2026-04-17 17:00:05
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+ERROR: Auth failed (401). Check email/token.
+======================================================================
+  CSFMD Bug Pipeline
+  2026-04-17 21:00:06
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+ERROR: Auth failed (401). Check email/token.
+======================================================================
+  CSFMD Bug Pipeline
+  2026-04-18 15:07:16
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+ERROR: Auth failed (401). Check email/token.
+======================================================================
+  CSFMD Bug Pipeline
+  2026-04-18 17:00:05
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+ERROR: Auth failed (401). Check email/token.
+======================================================================
+  CSFMD Bug Pipeline
+  2026-04-18 21:00:05
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+ERROR: Auth failed (401). Check email/token.
+======================================================================
+  CSFMD Bug Pipeline
+  2026-04-19 13:00:06
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+ERROR: Auth failed (401). Check email/token.
+======================================================================
+  CSFMD Bug Pipeline
+  2026-04-19 17:00:06
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+ERROR: Auth failed (401). Check email/token.
+^C======================================================================
+  CSFMD Bug Pipeline
+  2026-04-20 13:32:55
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+ERROR: Auth failed (401). Check email/token.
+======================================================================
+  CSFMD Bug Pipeline
+  2026-04-20 17:41:22
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+ERROR: Auth failed (401). Check email/token.
+======================================================================
+  CSFMD Bug Pipeline
+  2026-04-21 13:00:06
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+ERROR: Auth failed (401). Check email/token.
+======================================================================
+  CSFMD Bug Pipeline
+  2026-04-21 18:54:42
+======================================================================
+
+[1/6] Fetching bugs (status=New)...
+ERROR: Auth failed (401). Check email/token.
 ^C

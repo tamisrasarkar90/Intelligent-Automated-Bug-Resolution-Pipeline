@@ -203,16 +203,26 @@ def push_bug_fixes(bug_key: str, fix_files: list[Path], description: str = "") -
     return branch
 
 
-def create_pull_request(branch_name: str, title: str, body: str) -> str:
-    """Create a GitHub PR using the `gh` CLI. Returns the PR URL."""
-    result = _run(
-        ["gh", "pr", "create",
-         "--base", "main",
-         "--head", branch_name,
-         "--title", title,
-         "--body", body],
-        check=False,
-    )
+def create_pull_request(branch_name: str, title: str, body: str,
+                        reviewers: list[str] | None = None) -> str:
+    """Create a GitHub PR using the `gh` CLI. Returns the PR URL.
+
+    Args:
+        branch_name: Source branch
+        title: PR title
+        body: PR body (markdown)
+        reviewers: List of reviewer email addresses / usernames to request
+    """
+    cmd = [
+        "gh", "pr", "create",
+        "--base", "main",
+        "--head", branch_name,
+        "--title", title,
+        "--body", body,
+    ]
+    if reviewers:
+        cmd.extend(["--reviewer", ",".join(reviewers)])
+    result = _run(cmd, check=False)
     if result.returncode == 0:
         pr_url = result.stdout.strip()
         print(f"  ✓ PR created: {pr_url}")

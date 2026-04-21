@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intelligent Automated Bug Resolution Pipeline — Demo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Fira+Code&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --card: #334155;
+    --accent: #38bdf8;
+    --accent2: #818cf8;
+    --accent3: #34d399;
+    --danger: #f87171;
+    --warn: #fbbf24;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  /* ─── Slide container ─── */
+  .deck { position: relative; width: 100vw; height: 100vh; }
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 60px 80px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+  .slide.active { opacity: 1; pointer-events: auto; }
+
+  h1 { font-size: 3rem; font-weight: 900; line-height: 1.15; text-align: center; }
+  h2 { font-size: 2.2rem; font-weight: 700; margin-bottom: 30px; text-align: center; }
+  h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; color: var(--accent); }
+  p, li { font-size: 1.15rem; line-height: 1.7; color: var(--muted); }
+  li { margin-bottom: 8px; }
+  ul { list-style: none; padding: 0; }
+  ul li::before { content: "→ "; color: var(--accent); font-weight: 700; }
+  .highlight { color: var(--accent); }
+  .highlight2 { color: var(--accent2); }
+  .highlight3 { color: var(--accent3); }
+  .danger { color: var(--danger); }
+  .warn { color: var(--warn); }
+
+  /* ─── Two-column layouts ─── */
+  .columns { display: flex; gap: 50px; width: 100%; max-width: 1200px; align-items: flex-start; }
+  .col { flex: 1; }
+
+  /* ─── Code blocks ─── */
+  .code-block {
+    background: #0d1117; border: 1px solid #30363d;
+    border-radius: 10px; padding: 20px 24px;
+    font-family: 'Fira Code', monospace; font-size: 0.85rem;
+    line-height: 1.7; overflow-x: auto;
+    white-space: pre; color: #c9d1d9;
+    max-width: 100%; margin-top: 12px;
+  }
+  .code-block .kw { color: #ff7b72; }
+  .code-block .fn { color: #d2a8ff; }
+  .code-block .str { color: #a5d6ff; }
+  .code-block .cmt { color: #8b949e; }
+  .code-block .num { color: #79c0ff; }
+
+  /* ─── Cards ─── */
+  .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 1100px; }
+  .card-grid.two { grid-template-columns: repeat(2, 1fr); }
+  .card {
+    background: var(--surface); border-radius: 12px; padding: 24px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: transform 0.2s;
+  }
+  .card:hover { transform: translateY(-3px); }
+  .card .icon { font-size: 2rem; margin-bottom: 10px; }
+
+  /* ─── Flow diagram ─── */
+  .flow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; max-width: 1100px; }
+  .flow-step {
+    background: var(--surface); border: 2px solid var(--accent);
+    border-radius: 10px; padding: 14px 22px;
+    font-weight: 600; font-size: 0.95rem;
+    text-align: center; min-width: 140px;
+  }
+  .flow-arrow { color: var(--accent); font-size: 1.5rem; font-weight: 900; }
+
+  /* ─── Impact metrics ─── */
+  .metrics { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; max-width: 1000px; }
+  .metric {
+    background: var(--surface); border-radius: 16px; padding: 30px 36px;
+    text-align: center; min-width: 200px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .metric .value { font-size: 3rem; font-weight: 900; }
+  .metric .label { font-size: 0.95rem; color: var(--muted); margin-top: 6px; }
+
+  /* ─── Navigation ─── */
+  .nav {
+    position: fixed; bottom: 20px; right: 30px; z-index: 100;
+    display: flex; gap: 10px; align-items: center;
+  }
+  .nav button {
+    background: var(--surface); color: var(--text);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px; padding: 8px 18px;
+    font-size: 0.9rem; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .nav button:hover { background: var(--card); }
+  .nav .counter { color: var(--muted); font-size: 0.85rem; }
+
+  /* ─── Progress bar ─── */
+  .progress-bar {
+    position: fixed; top: 0; left: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    transition: width 0.4s ease; z-index: 100;
+  }
+
+  /* ─── Title slide special ─── */
+  .title-sub { font-size: 1.3rem; color: var(--muted); margin-top: 16px; }
+  .title-badge {
+    display: inline-block; background: var(--accent);
+    color: var(--bg); padding: 6px 16px; border-radius: 20px;
+    font-size: 0.85rem; font-weight: 700; margin-top: 20px;
+  }
+
+  /* ─── File badge ─── */
+  .file-badge {
+    display: inline-block; background: var(--card);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px; padding: 3px 10px;
+    font-family: 'Fira Code', monospace; font-size: 0.8rem;
+    color: var(--accent); margin: 3px;
+  }
+
+  .section-label {
+    font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px;
+    color: var(--accent2); margin-bottom: 10px;
+  }
+
+  .fade-in { animation: fadeIn 0.6s ease-out; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progress"></div>
+
+<div class="deck" id="deck">
+
+<!-- ═══════════════════════ SLIDE 1 — Title ═══════════════════════ -->
+<div class="slide active" data-slide="0">
+  <div class="section-label">Hyland · CSF Team</div>
+  <h1>Intelligent Automated<br><span class="highlight">Bug Resolution Pipeline</span></h1>
+  <p class="title-sub">An Agentic AI system that fetches, triages, analyzes, fixes, and ships bug resolutions — autonomously.</p>
+  <div class="title-badge">Agentic AI · JIRA · TFS · GitHub</div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 2 — The Problem ═══════════════════════ -->
+<div class="slide" data-slide="1">
+  <h2>The Problem</h2>
+  <div class="columns">
+    <div class="col">
+      <h3>Manual Bug Triage is Broken</h3>
+      <ul>
+        <li><span class="danger">Large volume</span> of aged, untriaged bugs in CSFMD project</li>
+        <li>Manual triage is <span class="danger">slow</span>, repetitive, and error-prone</li>
+        <li>Developers spend 30%+ time on triage instead of building</li>
+        <li>Bugs age for weeks before reaching the right developer</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>No Linkage Between</h3>
+      <ul>
+        <li><span class="warn">Bug</span> → which area of code is affected?</li>
+        <li><span class="warn">Code</span> → who owns this module?</li>
+        <li><span class="warn">Owner</span> → what's the fix priority?</li>
+        <li><span class="warn">Fix</span> → did it pass? Should we close the bug?</li>
+      </ul>
+      <p style="margin-top:20px;color:var(--danger);font-weight:600;">Result: Bugs pile up, customers wait, quality degrades.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 3 — Solution Overview ═══════════════════════ -->
+<div class="slide" data-slide="2">
+  <h2>The Solution — <span class="highlight">Agentic AI Pipeline</span></h2>
+  <div class="flow">
+    <div class="flow-step">📨 Fetch Bugs<br><small>JIRA Cloud</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">🧠 Understand<br><small>Root cause analysis</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">🔍 Map to Code<br><small>TFS codebase</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">🛠️ Generate Fix<br><small>Patch + tests</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">🔁 Raise PR<br><small>GitHub</small></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">📊 Update JIRA<br><small>Close the loop</small></div>
+  </div>
+  <p style="margin-top:40px;text-align:center;font-size:1.1rem;">
+    Fully autonomous — from <span class="highlight">bug discovery</span> to <span class="highlight3">pull request</span> — with zero human intervention.
+  </p>
+</div>
+
+<!-- ═══════════════════════ SLIDE 4 — Architecture ═══════════════════════ -->
+<div class="slide" data-slide="3">
+  <h2>Agentic System Architecture</h2>
+  <div class="card-grid">
+    <div class="card">
+      <div class="icon">📨</div>
+      <h3>Ingestion Agent</h3>
+      <p>Polls JIRA on schedule. Filters new/untriaged bugs by priority & severity.</p>
+      <div class="file-badge">jira_client.py</div>
+      <div class="file-badge">scheduler.py</div>
+    </div>
+    <div class="card">
+      <div class="icon">🧠</div>
+      <h3>Understanding Agent</h3>
+      <p>Extracts root cause hints, error types, and affected modules from bug descriptions.</p>
+      <div class="file-badge">bug_analyzer.py</div>
+    </div>
+    <div class="card">
+      <div class="icon">🔍</div>
+      <h3>Code Mapping Agent</h3>
+      <p>Semantic search against TFS source. Finds relevant files and code owners.</p>
+      <div class="file-badge">tfs_client.py</div>
+    </div>
+    <div class="card">
+      <div class="icon">🛠️</div>
+      <h3>Fix Generation Agent</h3>
+      <p>Generates patches, code diffs, and unit test suggestions from repo context.</p>
+      <div class="file-badge">bug_analyzer.py</div>
+      <div class="file-badge">fixes/</div>
+    </div>
+    <div class="card">
+      <div class="icon">🔁</div>
+      <h3>PR Agent</h3>
+      <p>Creates branches, pushes fixes, and raises PRs with linked JIRA IDs.</p>
+      <div class="file-badge">github_push.py</div>
+    </div>
+    <div class="card">
+      <div class="icon">📊</div>
+      <h3>Feedback Agent</h3>
+      <p>Tracks PR merge/reject status, sends email reports, and improves over time.</p>
+      <div class="file-badge">email_reporter.py</div>
+      <div class="file-badge">pipeline.py</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 5 — pipeline.py ═══════════════════════ -->
+<div class="slide" data-slide="4">
+  <h2><span class="file-badge" style="font-size:1.1rem;">pipeline.py</span> — The Orchestrator</h2>
+  <div class="columns">
+    <div class="col">
+      <h3>What It Does</h3>
+      <ul>
+        <li>Main entry point — runs the <span class="highlight">6-step pipeline</span></li>
+        <li>Fetches → Deduplicates → Prioritizes → Analyzes → Pushes → Updates JIRA</li>
+        <li>Supports <span class="highlight2">--dry-run</span>, single-bug mode, and limit options</li>
+        <li>Logs every run to <span class="file-badge">pipeline_log.json</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="code-block"><span class="cmt"># Usage examples</span>
+python pipeline.py                    <span class="cmt"># Full run</span>
+python pipeline.py <span class="str">--dry-run</span>          <span class="cmt"># Analyze only</span>
+python pipeline.py <span class="str">--bug CSFMD-10288</span>  <span class="cmt"># Single bug</span>
+python pipeline.py <span class="str">--limit 10</span>         <span class="cmt"># Top 10 bugs</span>
+
+<span class="cmt"># 6-Step Pipeline:</span>
+[1/6] Fetch NEW bugs from JIRA
+[2/6] Deduplicate against tracked bugs
+[3/6] Prioritize (Highest → Low)
+[4/6] Analyze against TFS source
+[5/6] Push fixes &amp; raise PRs
+[6/6] Update JIRA statuses</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 6 — jira_client.py ═══════════════════════ -->
+<div class="slide" data-slide="5">
+  <h2><span class="file-badge" style="font-size:1.1rem;">jira_client.py</span> — JIRA Integration</h2>
+  <div class="columns">
+    <div class="col">
+      <h3>Capabilities</h3>
+      <ul>
+        <li>Authenticates via <span class="highlight">JIRA Cloud REST API</span> (API token)</li>
+        <li>Fetches bugs from <span class="highlight2">CSFMD</span> project with JQL filters</li>
+        <li>Parses ADF (Atlassian Document Format) → plain text</li>
+        <li>Deduplicates against already-analyzed bugs</li>
+        <li>Transitions issues (New → In Development → Code Review)</li>
+        <li>Adds agent comments with root cause &amp; PR links</li>
+        <li>Priority sorting: <span class="danger">Highest</span> → High → Medium → Low → <span class="muted">Lowest</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="code-block"><span class="cmt"># Key functions:</span>
+<span class="fn">fetch_new_bugs</span>(status=<span class="str">"New"</span>)
+  → JQL query → CSFMD project bugs
+
+<span class="fn">deduplicate_bugs</span>(bugs, existing)
+  → Filter out already-tracked
+
+<span class="fn">transition_issue</span>(key, <span class="str">"In Development"</span>)
+  → Move bug through JIRA workflow
+
+<span class="fn">add_comment</span>(key, message)
+  → Post agent analysis as comment
+
+<span class="fn">priority_sort_key</span>(bug)
+  → Highest=0, High=1, ... Lowest=4</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 7 — tfs_client.py ═══════════════════════ -->
+<div class="slide" data-slide="6">
+  <h2><span class="file-badge" style="font-size:1.1rem;">tfs_client.py</span> — TFS Source Code Access</h2>
+  <div class="columns">
+    <div class="col">
+      <h3>How It Works</h3>
+      <ul>
+        <li>Connects to <span class="highlight">TFS REST API</span> via NTLM auth (Windows creds)</li>
+        <li>Browses <span class="highlight2">$/OnBase/DEV</span> source tree</li>
+        <li>Maps bug keywords → source paths automatically</li>
+        <li>Caches fetched files locally in <span class="file-badge">tfs_cache/</span></li>
+      </ul>
+      <h3 style="margin-top:20px;">Source Path Mapping</h3>
+      <ul>
+        <li>"DataValidation" → <span class="highlight3">Hyland.Web.Resources.Scripts</span></li>
+        <li>"keyword panel" → <span class="highlight3">Hyland.Controls.Web/KeywordPanel</span></li>
+        <li>"web client" → <span class="highlight3">Hyland.Controls.Web</span></li>
+        <li>"admin" → <span class="highlight3">Hyland.Web.Administration</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="code-block"><span class="cmt"># Source tree structure</span>
+$/OnBase/DEV/Core/OnBase.NET/Libraries/
+├── Hyland.Web.Resources.Scripts/
+│   ├── DataValidation.js
+│   └── EmbeddedScripts.cs
+├── Hyland.Controls.Web/
+│   └── KeywordPanel/
+│       ├── KeywordHandler.cs
+│       ├── KeywordTypePanel.cs
+│       ├── ReindexController.cs
+│       └── Scripts/*.js
+├── Hyland.Applications.Web/
+└── Hyland.Web.Administration/
+
+<span class="cmt"># Cached files used for analysis:</span>
+tfs_cache/
+├── KeywordHandler.cs
+├── ReindexController.cs
+├── ViewKeywords.aspx.cs
+└── ... (10 files)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 8 — bug_analyzer.py ═══════════════════════ -->
+<div class="slide" data-slide="7">
+  <h2><span class="file-badge" style="font-size:1.1rem;">bug_analyzer.py</span> — The Brain</h2>
+  <div class="columns">
+    <div class="col">
+      <h3>Classification &amp; Root Cause</h3>
+      <ul>
+        <li>Classifies bugs into codebases: <span class="highlight">Web Client</span>, Unity, EDM, Core, Workflow</li>
+        <li>Pattern-matches bug text against known issue signatures</li>
+        <li>Detects: DataValidation gaps, cascading dataset bugs, keyword panel errors, MIKG/SIKG issues, locale mismatches</li>
+        <li>Marks bugs as: <span class="highlight3">FIX_PENDING</span>, <span class="warn">NEEDS_MANUAL_REVIEW</span>, or <span class="danger">FLAGGED_INVALID</span></li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="code-block"><span class="cmt"># Root cause detection patterns:</span>
+
+<span class="kw">DataValidation</span> + "invalid"
+  → Missing JS file for OS version
+  → <span class="str">Fixable by agent ✓</span>
+
+<span class="kw">Cascading</span> + "hidden"
+  → Hidden parent keyword → empty child
+  → Needs manual review
+
+<span class="kw">Keyword panel</span> + "collapse"
+  → Null response from server
+  → Needs manual review
+
+<span class="kw">MIKG/SIKG</span> + "expand"
+  → Instance handling issue
+  → Needs manual review
+
+<span class="kw">intermittent</span> | <span class="kw">NVDA</span>
+  → Flagged as invalid / non-code bug</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 9 — github_push.py ═══════════════════════ -->
+<div class="slide" data-slide="8">
+  <h2><span class="file-badge" style="font-size:1.1rem;">github_push.py</span> — Auto PR Creation</h2>
+  <div class="columns">
+    <div class="col">
+      <h3>End-to-End Git Automation</h3>
+      <ul>
+        <li>Ensures local repo is configured &amp; up to date</li>
+        <li>Creates feature branches: <span class="highlight2">feature/agent-tests-{IDs}-{date}</span></li>
+        <li>Copies fix files into correct project directory</li>
+        <li>Commits with descriptive messages linked to JIRA IDs</li>
+        <li>Pushes to GitHub and <span class="highlight">creates Pull Requests</span></li>
+        <li>PR body includes: summary, root cause, fix description, affected files</li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="code-block"><span class="cmt"># Auto-generated PR example:</span>
+
+<span class="kw">Branch:</span> feature/tamisra.sarkar/
+        agent-tests-10288-20260415
+
+<span class="kw">PR Title:</span> fix(CSFMD-10288): DataValidation
+         resorting to default locale
+
+<span class="kw">PR Body:</span>
+## Bug Fix: CSFMD-10288
+<span class="str">**Root Cause:**</span> DataValidation JS
+file missing for detected OS version
+<span class="str">**Fix:**</span> Add DataValidation2025.js
+and register in EmbeddedScripts.cs
+<span class="str">**Affected Files:**</span>
+- EmbeddedScripts.cs
+
+<span class="cmt">*Generated by CSFMD Bug Agent*</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 10 — Supporting Files ═══════════════════════ -->
+<div class="slide" data-slide="9">
+  <h2>Supporting Components</h2>
+  <div class="card-grid two">
+    <div class="card">
+      <div class="icon">⏰</div>
+      <h3>scheduler.py</h3>
+      <p>Registers the pipeline as a <span class="highlight">Windows Scheduled Task</span> — runs every 4 hours. Also supports foreground loop mode for testing and biweekly email report scheduling.</p>
+      <div class="code-block" style="font-size:0.75rem;">python scheduler.py install           <span class="cmt"># Every 4h</span>
+python scheduler.py run-loop          <span class="cmt"># Foreground</span>
+python scheduler.py install-email     <span class="cmt"># Biweekly</span></div>
+    </div>
+    <div class="card">
+      <div class="icon">📧</div>
+      <h3>email_reporter.py</h3>
+      <p>Generates HTML summary emails via <span class="highlight">Outlook COM automation</span>. Reports: bug counts by status, codebase distribution, fix/flagged lists.</p>
+      <div class="code-block" style="font-size:0.75rem;">python email_reporter.py              <span class="cmt"># Send now</span>
+python email_reporter.py --dry-run    <span class="cmt"># Preview</span></div>
+    </div>
+    <div class="card">
+      <div class="icon">📁</div>
+      <h3>Data Files</h3>
+      <p>Pipeline state persisted as JSON:</p>
+      <div><span class="file-badge">bugs.json</span> Latest fetched bugs</div>
+      <div><span class="file-badge">bug_analysis.json</span> All analysis results</div>
+      <div><span class="file-badge">pipeline_log.json</span> Run history</div>
+    </div>
+    <div class="card">
+      <div class="icon">🔧</div>
+      <h3>Fix Files</h3>
+      <p>Agent-generated patches:</p>
+      <div><span class="file-badge">DataValidation2025.js</span></div>
+      <div><span class="file-badge">EmbeddedScripts.cs</span></div>
+      <p style="margin-top:8px;">Copied to target repo and included in PRs.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 11 — Live Demo Flow ═══════════════════════ -->
+<div class="slide" data-slide="10">
+  <h2>Pipeline Execution Flow</h2>
+  <div class="code-block" style="max-width:900px;font-size:0.82rem;">
+<span class="cmt">======================================================================</span>
+<span class="str">  CSFMD Bug Pipeline</span>
+<span class="str">  2026-04-15 10:30:00</span>
+<span class="cmt">======================================================================</span>
+
+[1/6] Fetching bugs (status=New)...
+  <span class="fn">Authenticated as Tamisra Sarkar</span>
+  Found <span class="num">8</span> bug(s)
+
+[2/6] Deduplicating against existing analysis...
+  <span class="num">5</span> new bug(s) to analyze
+
+[3/6] Prioritizing (High → Medium → Low)...
+         <span class="danger">Highest</span> | CSFMD-10301 | DataValidation resorting to default...
+            <span class="warn">High</span> | CSFMD-10288 | Cascading dataset hidden keyword...
+          <span class="str">Medium</span> | CSFMD-10295 | Keyword panel collapse on import...
+
+[4/6] Analyzing bugs against TFS source code...
+    <span class="highlight3">✓ CSFMD-10301: FIX AVAILABLE</span> — DataValidation JS file missing for version
+    <span class="warn">⚠ CSFMD-10288: FLAGGED INVALID</span> — intermittent, not reproducible
+    → CSFMD-10295: NEEDS_MANUAL_REVIEW — Keyword panel rendering failure
+
+[5/6] Pushing fixes and raising PRs...
+    <span class="highlight3">✓ Created branch: feature/tamisra.sarkar/agent-tests-10301-20260415</span>
+    <span class="highlight3">✓ PR created for CSFMD-10301</span>
+
+[6/6] Updating JIRA statuses...
+    <span class="highlight">✓ CSFMD-10301 → In Development</span>
+    <span class="highlight">✓ Comment added to CSFMD-10288</span>
+</div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 12 — Impact ═══════════════════════ -->
+<div class="slide" data-slide="11">
+  <h2>Impact &amp; Results</h2>
+  <div class="metrics">
+    <div class="metric">
+      <div class="value highlight">60-80%</div>
+      <div class="label">Reduction in Triage Time</div>
+    </div>
+    <div class="metric">
+      <div class="value highlight3">40%+</div>
+      <div class="label">Bug Backlog Reduction</div>
+    </div>
+    <div class="metric">
+      <div class="value highlight2">0</div>
+      <div class="label">Human Steps for Valid Fixes</div>
+    </div>
+    <div class="metric">
+      <div class="value warn">24/7</div>
+      <div class="label">Autonomous Operation</div>
+    </div>
+  </div>
+  <div style="margin-top:40px;text-align:center;max-width:800px;">
+    <ul>
+      <li><span class="highlight3">Faster resolution</span> → better customer satisfaction</li>
+      <li><span class="highlight">Developers focus</span> on high-value work, not triage</li>
+      <li><span class="highlight2">Full audit trail</span> — every bug tracked from discovery to PR</li>
+      <li><span class="warn">Continuous learning</span> — feedback loop improves accuracy over time</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════ SLIDE 13 — Thank You ═══════════════════════ -->
+<div class="slide" data-slide="12">
+  <div class="section-label">Thank You</div>
+  <h1>Intelligent Automated<br><span class="highlight">Bug Resolution Pipeline</span></h1>
+  <p class="title-sub" style="margin-top:20px;">
+    From bug report to pull request — fully autonomous.<br>
+    <span style="color:var(--accent);">Built by Tamisra Sarkar · CSF Team · Hyland</span>
+  </p>
+  <div style="margin-top:30px;">
+    <span class="file-badge" style="font-size:0.9rem;">github.com/tamisrasarkar90/Intelligent-Automated-Bug-Resolution-Pipeline</span>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- ─── Navigation ─── -->
+<div class="nav">
+  <button onclick="prev()">← Prev</button>
+  <span class="counter" id="counter">1 / 13</span>
+  <button onclick="next()">Next →</button>
+</div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+
+  function show(n) {
+    slides.forEach(s => s.classList.remove('active'));
+    slides[n].classList.add('active');
+    counter.textContent = `${n + 1} / ${total}`;
+    progress.style.width = `${((n + 1) / total) * 100}%`;
+  }
+
+  function next() { if (current < total - 1) { current++; show(current); } }
+  function prev() { if (current > 0) { current--; show(current); } }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+    if (e.key === 'Home') { current = 0; show(current); }
+    if (e.key === 'End') { current = total - 1; show(current); }
+  });
+
+  show(0);
+</script>
+</body>
+</html>

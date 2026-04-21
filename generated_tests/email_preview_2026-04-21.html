@@ -1,0 +1,1658 @@
+
+    <html><body style="font-family:'Segoe UI',Arial,Helvetica,sans-serif;color:#24292f;background:#f6f8fa;margin:0;padding:0;">
+    <div style="max-width:1200px;margin:0 auto;background:#ffffff;border:1px solid #d0d7de;border-radius:8px;overflow:hidden;">
+
+        <!-- Header -->
+        <div style="background:linear-gradient(135deg,#0052cc 0%,#0969da 100%);padding:24px 32px;">
+            <h1 style="color:#ffffff;margin:0;font-size:22px;font-weight:700;">CSFMD Bug Analysis Report</h1>
+            <p style="color:#cce5ff;margin:6px 0 0 0;font-size:14px;">
+                Generated: <b style="color:#fff;">April 21, 2026</b> &nbsp;&bull;&nbsp;
+                Total bugs tracked: <b style="color:#fff;">84</b>
+            </p>
+        </div>
+
+        <div style="padding:24px 32px;">
+
+            <!-- Status Overview -->
+            <h2 style="color:#24292f;font-size:16px;margin:0 0 12px 0;border-bottom:2px solid #0969da;padding-bottom:6px;">
+                Status Overview</h2>
+            <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom:24px;">
+            <tr><td style="padding:0 6px;"><div style="background:#dafbe1;border-left:4px solid #28a745;padding:10px 16px;border-radius:6px;min-width:120px;text-align:center;"><div style="font-size:24px;font-weight:bold;color:#1a7f37;">1</div><div style="font-size:12px;color:#1a7f37;margin-top:2px;">Fix Created</div></div></td><td style="padding:0 6px;"><div style="background:#fff8c5;border-left:4px solid #bf8700;padding:10px 16px;border-radius:6px;min-width:120px;text-align:center;"><div style="font-size:24px;font-weight:bold;color:#9a6700;">55</div><div style="font-size:12px;color:#9a6700;margin-top:2px;">Needs Review</div></div></td><td style="padding:0 6px;"><div style="background:#f6f8fa;border-left:4px solid #57606a;padding:10px 16px;border-radius:6px;min-width:120px;text-align:center;"><div style="font-size:24px;font-weight:bold;color:#24292f;">28</div><div style="font-size:12px;color:#57606a;margin-top:2px;">Other</div></div></td></tr>
+            </table>
+
+            <!-- By Codebase -->
+            <h2 style="color:#24292f;font-size:16px;margin:0 0 12px 0;border-bottom:2px solid #0969da;padding-bottom:6px;">
+                By Codebase</h2>
+            <table style="border-collapse:collapse;margin-bottom:24px;min-width:300px;">
+            <tr style="background:#0969da;">
+                <th style="padding:8px 14px;text-align:left;color:#fff;font-size:13px;font-weight:600;">Codebase</th>
+                <th style="padding:8px 14px;text-align:center;color:#fff;font-size:13px;font-weight:600;">Count</th>
+            </tr>
+            <tr><td style="padding:6px 14px;border-bottom:1px solid #d0d7de;font-size:14px;color:#24292f;">Configuration Client</td><td style="padding:6px 14px;border-bottom:1px solid #d0d7de;font-size:14px;font-weight:bold;color:#0550ae;text-align:center;">6</td></tr><tr><td style="padding:6px 14px;border-bottom:1px solid #d0d7de;font-size:14px;color:#24292f;">Core / Other</td><td style="padding:6px 14px;border-bottom:1px solid #d0d7de;font-size:14px;font-weight:bold;color:#0550ae;text-align:center;">22</td></tr><tr><td style="padding:6px 14px;border-bottom:1px solid #d0d7de;font-size:14px;color:#24292f;">EDM Module</td><td style="padding:6px 14px;border-bottom:1px solid #d0d7de;font-size:14px;font-weight:bold;color:#0550ae;text-align:center;">4</td></tr><tr><td style="padding:6px 14px;border-bottom:1px solid #d0d7de;font-size:14px;color:#24292f;">Unity Client</td><td style="padding:6px 14px;border-bottom:1px solid #d0d7de;font-size:14px;font-weight:bold;color:#0550ae;text-align:center;">18</td></tr><tr><td style="padding:6px 14px;border-bottom:1px solid #d0d7de;font-size:14px;color:#24292f;">Web Client</td><td style="padding:6px 14px;border-bottom:1px solid #d0d7de;font-size:14px;font-weight:bold;color:#0550ae;text-align:center;">34</td></tr>
+            </table>
+
+            <!-- Bug Details -->
+            <h2 style="color:#24292f;font-size:16px;margin:0 0 12px 0;border-bottom:2px solid #0969da;padding-bottom:6px;">
+                Bug Details</h2>
+            <table style="border-collapse:collapse;width:100%;font-size:13px;border:1px solid #d0d7de;">
+            <tr style="background:#0969da;">
+                <th style="padding:10px 12px;text-align:left;color:#fff;font-weight:600;">Key</th>
+                <th style="padding:10px 12px;text-align:left;color:#fff;font-weight:600;min-width:200px;">Summary</th>
+                <th style="padding:10px 12px;text-align:center;color:#fff;font-weight:600;">Category</th>
+                <th style="padding:10px 12px;text-align:left;color:#fff;font-weight:600;">Codebase</th>
+                <th style="padding:10px 12px;text-align:left;color:#fff;font-weight:600;">Status</th>
+                <th style="padding:10px 12px;text-align:left;color:#fff;font-weight:600;min-width:350px;">Root Cause</th>
+                <th style="padding:10px 12px;text-align:center;color:#fff;font-weight:600;">Confidence</th>
+                <th style="padding:10px 12px;text-align:center;color:#fff;font-weight:600;">PR Link</th>
+            </tr>
+            <tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10030" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10030</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Some configuration automatically adds non-medical docs to hsi.mrorphandocs</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Configuration Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Configuration Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10049" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10049</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Reverse Autofill in Web Client Utilizing Special Characters Will Return No Results</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10050" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10050</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Keyword Data Set Import box doesn't respect the filename field.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10145" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10145</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Within the Unity Client if a Keyword value is entered that includes the same characters, in the same order, as the Static characters configured within the Masking of said Keyword, the values are being removed and the Keyword is not being saved.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10271" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10271</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">In Unity Client, once a document is opened and viewed, then with the same user is getting document  lock  pop up each time, at their next subsequent login </td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — Unity Client</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Unity Client document lock persistence across sessions. Unity Client only.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">45%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10275" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10275</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Web Client [WorkFlow]: When switching document with hidden keywords, values from SIKG and MIKG is not propagating.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Document type switching does not properly transfer keyword values.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">50%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10277" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10277</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Web Client [WorkFlow]: When default document type is set up for an Reindex workflow action, keyword panel is not refreshed to default document type keywords.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — workflow/reindex integration needs investigation</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Workflow Reindex action sets a default document type but the keyword panel does not refresh to show that DT's keywords. ReindexController.cs and Reindex_action.aspx.cs likely do not trigger a panel rebuild when the workflow sets a default DT.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">70%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10288" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10288</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Windows Server 2025: Getting "DataValidation reference Hyland.Web.Resources.Scripts.DataValidation2025.js is invalid. Resorting to default." error while trying to access the AppNet url for the first time</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#cf222e;color:#fff;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">High</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#dafbe1;color:#28a745;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">FIX CREATED</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">EmbeddedScripts.cs PickDataValidationVersion() extracts '2025' from 'Windows Server 2025' registry ProductName, but DataValidation2025.js does not exist and '2025' is not in SupportedDVOverrides array.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#dafbe1;color:#1a7f37;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">100%<br/><span style="font-size:11px;font-weight:normal;">High</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr><td style="background:#dafbe1;color:#1a7f37;font-weight:bold;font-size:11px;padding:3px 10px;border-radius:4px;text-align:center;">Local Fix Available</td></tr></table></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10335" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10335</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Web Client [Document Packaging]: Expanding AFK with hidden keyword creates an extra instance of MIKG</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — server-side MIKG handling needs review</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Expanding AFK with hidden keyword creates extra MIKG instance in Document Packaging. Related to how PerformAutofillKeysetExpansion handles hidden keywords in MIKG. KeywordHandler.cs PerformAutofillKeysetExpansion passes 'ForceMask' for hidden but the server may be creating duplicate instances.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">70%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10341" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10341</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Web Client: Restricted user is unable to Generate package when ReadOnly Keywords are modified using AFK/RAFK</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Keyword panel rendering failure — likely null/empty response from server.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">50%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10370" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10370</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Unable to update/delete an existing Floating Point Keyword in the Core when using an Oracle database and the number is rounded</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — Core/Oracle database layer</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Floating point keyword update/delete fails in Oracle due to rounding. This is a Core/database layer issue with Oracle number precision, not a Web Client JS issue.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">55%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10466" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10466</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Web Client: Failing to load keyword panel in Add/Modify Keyword/Reindex/CreateNewDocument panel when Mask Keyword is part of the Document Type in Oracle database.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10489" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10489</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">In Unity Client duplicate keyword's fieldname's is  inconsistent over the builds</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — Unity Client</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Unity Client duplicate keyword fieldname inconsistency. Unity Client only.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">45%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10502" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10502</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">OBUPG – Re-Index button becomes unresponsive when using the 'Drag and drop' feature when processing documents through Workflow within the web client.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10784" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10784</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Unity Client: Keyword panel error when document auto-open after import</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — Unity Client (different codebase)</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Unity Client keyword panel error on auto-open after import. This is a Unity Client issue, not Web Client.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">55%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10836" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10836</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Web Client: Error when we query RAFK lookup using keyword value when Mask is configured with leading + sign as static character</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ddf4ff;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Low</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10842" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10842</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Correct Rendering of Datagrid Filter Icon and Artifact</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — CSS/UI rendering, not in analyzed codebase</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">CSS/rendering issue with datagrid filter icon. Not in keyword panel code.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">45%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10862" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10862</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Keyword panel is collapsing in both Unity and Web client upon executing "Set Property Value From Keyword Record"  ad hoc task for document having MIKG keyword set.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — needs workflow task handler investigation</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Keyword panel collapses when 'Set Property Value From Keyword Record' ad hoc task is executed on MIKG documents. The workflow task handler triggers a panel refresh via WorkflowTaskHandler.js but the MIKG re-render fails. Server-side SOA call likely returns incomplete keyword record data.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">70%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10912" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10912</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">AFKS prompts twice to select data set when importing a document in WorkView</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — WorkView/AFKS integration</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">AFKS prompts twice in WorkView document import. Likely a double-trigger of the autofill expansion logic when WorkView invokes the import dialog.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">70%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10951" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10951</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">When executing a system task "Upload Documents" on a Workview object, the keywords are not carried over from the object to the document import screen within the Web Client.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10960" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10960</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Re-indexing works within the Web Client but fails within Unity Client when different Hidden and Read Only Settings are set on the Keywords</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10973" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10973</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">For a formatted keyword with Full Field Entry Not required, in web client , user is not able to use 'Backspace' or enter text for editing the field in Add/Modify Keywords</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-10991" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-10991</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;"></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Configuration Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — different codebase (Configuration Client)</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">AutoFill Keyword Set Importer fails when keysetnum is blank. This is a server-side Core issue in the AFKS importer, not in Web Client JS. The PerformAutofillKeysetExpansion in KeywordHandler.cs passes keysetID but the importer tool itself is separate from the web keyword panel.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">55%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-11031" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-11031</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">CLONE - DUMMY for testing No action is required</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1133" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1133</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Invalid Date Format for Serbian locale</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Locale-specific date/time format mismatch in DataValidation.js.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">50%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1204" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1204</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">MIKG Encrypted Keywords cause pseudo-error message in Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">MIKG/SIKG instance handling issue during autofill expansion.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">50%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1262" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1262</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Unity Client: When keywords are applied from a reverse autofill keyset with the Lock Applied Keywords setting enabled the keywords are not being locked</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1327" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1327</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Web Client | IDOLToolbar.js receives an error when attempting to "View Original Document" for documents that do not display as images</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1332" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1332</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Harmony - Keyword panel throws an exception for keywords that use masking</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ddf4ff;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Low</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Keyword panel rendering failure — likely null/empty response from server.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">50%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-144" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-144</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Encrypted Security Mask Keywords are not behaving properly</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Security mask keyword handling issue.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">50%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1440" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1440</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Safari Upload Document giving Timeout Exception Window During Long-Running File Uploads</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1441" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1441</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Merging an existing value into a masked keyword dataset results in an ODBC error</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1453" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1453</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Unity: Unable to import document with reestablished connection after user's network connection was lost during import </td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1527" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1527</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Encypted Security Mask Keywords not behaving properly</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ddf4ff;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Low</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Security mask keyword handling issue.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">50%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1528" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1528</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Unity: Autofills are not properly handling security masked keywords</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Security mask keyword handling issue.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">50%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1667" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1667</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Spaces missing from warning message when a user in Doc Sep changes a document's document type in a way that causes restricted keyword security degradation</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1673" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1673</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">An untranslated message string found when re-index a separate document </td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1692" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1692</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Unity - EDM Checkout: Server-side restricted keyword validation fails if the user changes the doc type in the Save as New Document keyword panel</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Document type switching does not properly transfer keyword values.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">50%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1693" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1693</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">EP5 Unity: Upload contexts which inherit keywords are allowing restricted users to clear read-only keywords</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1739" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1739</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Unity: When importing multiple image files as a multipage image in ad hoc import, processing file name keywords only display the first file's name in the kwp, but all file names are added as processing file name keywords upon import</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1753" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1753</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">ChecksumCreator RemoveURL does not remove https urls from the querystring parameter</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1769" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1769</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Exception has been thrown message in Document Separation</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1771" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1771</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Unity: Document purged toast appears when attempting to re-index a document into a doctype with revisions enabled if "save as revision" is selected</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ddf4ff;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Low</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1911" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1911</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Web Client: Users Without Privilege to Create Revisions can Re-Index a Document as a Revision of Another Document </td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1914" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1914</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Web Client: Stamp Version Context Menu Option Present on Revisions Prior to Most Recent Stamp. </td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1930" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1930</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Importing with the following Workstation Options enabled "Clear Keywords After Import" and "Do Not Close Dialog After Import" is clearing default values</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1946" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1946</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Keyword panel is cleared after performing an Import when multiple files are dragged in for Import</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-1961" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-1961</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Encrypted AutoFill Keyword Sets will not expand in the Core dependent on maxlength values</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-2012" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-2012</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Backport 22.1 - Merging an existing value into a masked keyword dataset results in an ODBC error</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-2093" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-2093</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Importing data into a Cascading Dataset that leverages a Keyword set to '250' characters is causing the OnBase Configuration Client to close unexpectedly.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ddf4ff;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Low</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Configuration Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Configuration Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-2270" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-2270</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Losing a MIKG instance when using a No Access Restricted Keywords User to re-index into a Document Type with HID Keywords</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">MIKG/SIKG instance handling issue during autofill expansion.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">50%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-2283" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-2283</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">'Document is no longer checked out. A local copy containing your changes can be recovered.' is displayed when viewing “My Checkouts” after another OnBase user on the same workstation as checks out a document</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">EDM Module</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: EDM Module</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-2296" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-2296</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Deleting a Document Type with a document template assigned causes Unity to not display any available templates</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-2383" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-2383</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Re-indexing a document using keywords that belong to an existing document and selecting "Save as Revision" in the existing document revision dialog results in errors shown in Diagnostics Console and a document lock on doc ID 0</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-2384" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-2384</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Re-indexing a document using keywords that belong to an existing document and selecting "Save as Revision" in the existing document revision dialog results in errors shown in Diagnostics Console</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-2514" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-2514</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">The message ”There are no keywords available for this document type.” can be erroneously displayed when the "UseNewKeywordDataCacheImplementation" feature flag is enabled</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-2543" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-2543</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Web Client Document Import doesn't preserve Keyword values when changing to another Document in Document Queue</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-2557" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-2557</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Security Keywords added with invalid values within the Web Client Admin Panel are behaving incorrectly</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — Web Administration panel</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Security Keywords added with invalid values in Web Client Admin Panel. Admin panel validation insufficient for security keyword values.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">70%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-6151" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-6151</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Show Comment button in Doc checked out list  doesnot work ...If it is clicked nothing is showing </td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">EDM Module</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — EDM module</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Show Comment button in checked-out document list doesn't work. EDM module UI issue.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">55%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-6152" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-6152</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Unexpected behavior observed while applying multiple autofill records to a document containing Single Instance Keyword Group(SIKG)</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — AFKS/SIKG (related to CSFMD-6153)</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Same as CSFMD-6153 but for multiple autofill records with SIKG (non-expand-all).</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">60%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-6153" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-6153</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Unexpected behavior observed while expanding multiple autofill records to a document containing Single Instance Keyword Group(SIKG) when the "Expand all Matching Instances" AutoFill Setting is enabled.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — AFKS/SIKG server-side</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Multiple autofill records expansion with SIKG and 'Expand all Matching Instances' causes unexpected behavior. KeywordHandler.cs PerformAutofillKeysetExpansion may not handle SIKG constraints correctly when multiple matches found.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">70%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-6211" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-6211</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">The value of the specified currency is not automatically filled in the input field when the user selects the value from the drop-down list for the specified currency keyword in Unity Client. </td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — Unity Client</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Currency keyword autoFill in Unity Client dropdown. Unity Client only.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">45%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-6293" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-6293</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Doctype has with comment settings but  check-in can be done without entering comment </td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">EDM Module</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — EDM module</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Check-in without comment despite comment settings. EDM checkout module issue.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">45%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-6305" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-6305</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">If the case of a dual table (Alphanumeric) keyword is sensitive, the Keytypeflags2 column in the Keytypetable should have a value of 2, yet it is showing 6.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Configuration Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — Configuration Client / database layer</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Keytypeflags2 column in Keytypetable shows 6 instead of 2 for case-sensitive dual table alphanumeric keywords. This is a database/Configuration Client issue.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">55%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-6315" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-6315</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Keyword configured as Invisible are not visible in Custom Query interface</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Configuration Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — CustomQueryMode configuration filtering</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Invisible keywords not visible in Custom Query. Configuration/query mode issue.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">60%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-6317" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-6317</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">MIKGs not duplicating correctly in retrieval Keyword Panel</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — keyword panel MIKG duplication</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">MIKGs not duplicating correctly in retrieval Keyword Panel. KeywordPanel.js row duplication for retrieval mode may not handle MIKG records properly.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">70%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-6370" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-6370</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Version name and Version number issue for revised documents in the Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ddf4ff;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Low</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — versioning display</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Version name/number issue for revised documents. Versioning/revision display issue.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">55%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-6397" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-6397</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Default Values configured in MIKG is not getting populated when user creates another instance</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Configuration Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — MIKG default value handling in row duplication</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">MIKG default values not populated on new instance creation. KeywordPanel.js duplicateRow/duplicateRecord functions copy the row HTML but may not re-apply default values from the keyword type configuration.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">70%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-64" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-64</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Update Keyword Panel CSS classes to use ob-prefix</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-6429" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-6429</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Web Client - 'Child' Keywords within a Cascading Dataset have no selectable values when the 'Parent' Keyword--which is a 'Child' of the Root value--is hidden.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#cf222e;color:#fff;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Critical</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">ROOT CAUSE IDENTIFIED — requires deeper business logic review before fixing</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">In KeywordPanelItem.js getQueryKeywordEx(), when building cascading dataset parent values, hidden keywords (type='hidden') are skipped because their getCurrentValue() returns empty string. The check at line ~2324 requires strValue.length > 0 to include the keyword in the XML sent to ExpandCascadingDataSet. Since hidden parent keywords have no visible value, child keywords receive no parent context and return empty results.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#dafbe1;color:#1a7f37;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">85%<br/><span style="font-size:11px;font-weight:normal;">High</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-6812" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-6812</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Document Retrieval- While retrieving a document using the 'string literal' operator (") for the first instance of the keyword and (=) for the second instance of the same keyword, along with AND operator set for them, it's not returning the correct result</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — Core retrieval engine</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Document retrieval with string literal operator (") for first keyword instance and equals (=) for second instance with AND operator returns wrong results. This is a query builder / retrieval engine issue, not in the Web Client keyword panel.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">55%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-6855" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-6855</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Intermittent Issue: “how instructions button collapsed S” is announced/displayed on NVDA screen viewer instead of “Show instructions button collapsed” on Custom Query Screen</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ddf4ff;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Low</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">FLAG: LIKELY INVALID — intermittent NVDA screen reader issue, not application bug</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">NVDA screen reader intermittently reads truncated aria-label. This is an intermittent accessibility/AT issue that may be an NVDA bug rather than an application bug. The button's aria-label is likely set correctly but NVDA clips it.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">35%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-719" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-719</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">SCR # 325782 - Incorrect entry for Document History when a restricted user clears MIKG with a hidden keyword</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-8913" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-8913</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">[Web Client] AFKS - Pressing F6 or TAB While Placing Cursor On The Primary Keyword Field After Deleting Other Or Primary Keyword Field Doesn't Auto-Populate Keyword Fields</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ddf4ff;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Low</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">MIKG/SIKG instance handling issue during autofill expansion.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">50%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-9663" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-9663</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">UnityClient_Autofill : Displays empty value for Num20 keyword in Multi select AFKS pop up when the value is of MAX 20 digits</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-9717" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-9717</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">[Unity Client] Throws Null pointer exception while switching documents</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — Unity Client</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Unity Client NullPointerException while switching documents. Unity Client only.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">45%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-9718" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-9718</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">[Unity Client] Throws error while switching documents with mikg keywords</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Unity Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — Unity Client</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Unity Client error switching documents with MIKG keywords. Unity Client only.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">45%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-9721" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-9721</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Custom Validation scripts on the web client are giving browser error: 'because its MIME type ('text/html') is not executable, and strict MIME type checking is enabled.'</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">EDM Module</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Keyword panel rendering failure — likely null/empty response from server.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">50%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-9845" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-9845</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Migrating Keyword Groups is considerably slower than Single Keywords</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-9868" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-9868</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Data Validation - DateTime format provided from DataValidation JS is not working in Hungary</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — needs DataValidation2022.js Hungarian format verification</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Hungarian ('hu'/'hu-hu') DateTime format in DataValidation.js uses 'yyyy. MM. dd. ' (with trailing period and space). The format IS defined (line 1815) and the localized date output IS handled (line 2292). However, the version-specific DataValidation2022.js may override this format incorrectly for certain Windows Server builds. The version-specific file could not be downloaded for verification.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">70%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-9894" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-9894</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">The following error is thrown when the 'Replace Keyword' action is executed with an intentionally null value for a keyword that is apart of a Single Keyword Group: ORA-00001: unique constraint violated</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#cf222e;color:#fff;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">High</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Core / Other</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-9895" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-9895</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Web Client- Clear Keywords is not able to clear the keyword panel at once after expanding an AFK then switching it to a different Document type</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Document type switching does not properly transfer keyword values.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">50%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#ffffff;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-9923" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-9923</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Web Client doesn't respect keyword mask when there is an external data set involved.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Medium</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#fff8c5;color:#bf8700;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">NEEDS_MANUAL_REVIEW</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">Requires manual investigation. Classified as: Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ffebe9;color:#cf222e;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">30%<br/><span style="font-size:11px;font-weight:normal;">Low</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr><tr style="background:#f6f8fa;">
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <a href="https://hyland.atlassian.net/browse/CSFMD-9996" style="color:#0969da;font-weight:bold;text-decoration:none;">CSFMD-9996</a></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#24292f;max-width:320px;">Data Validation - normalizeData() function with DateTime is able to parse time part for different locales but for language "vi" a red dotted line is appearing in UI</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#ddf4ff;color:#24292f;font-weight:bold;font-size:12px;padding:4px 12px;border-radius:4px;text-align:center;">Low</td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;color:#57606a;">Web Client</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;">
+                <table cellpadding="0" cellspacing="0" border="0"><tr>
+                <td style="background:#f6f8fa;color:#57606a;font-weight:bold;font-size:12px;padding:4px 10px;border-radius:4px;white-space:nowrap;">VALID BUG — locale-specific DateTime CSS validation, needs specific repro</td>
+                </tr></table></td>
+            <td style="padding:10px 14px;border-bottom:1px solid #d0d7de;background:#e8f0fe;color:#1a1a2e;font-size:13px;min-width:350px;max-width:500px;line-height:1.6;border-left:3px solid #0969da;">DataValidation.js normalizeData() for Vietnamese ('vi'/'vi-vn') locale: the date/time parsing works but a red dotted line appears in UI. The Vietnamese locale IS defined in DataValidation.js (lines 132-133, 791, 1384) with correct decimal/currency settings. The 'red dotted line' is likely a CSS validation indicator triggered by a minor parsing issue in the time portion.</td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;">
+                <table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>
+                <td style="background:#fff8c5;color:#9a6700;font-weight:bold;font-size:14px;padding:6px 14px;border-radius:4px;text-align:center;white-space:nowrap;">70%<br/><span style="font-size:11px;font-weight:normal;">Medium</span></td>
+                </tr></table></td>
+            <td style="padding:8px 12px;border-bottom:1px solid #d0d7de;text-align:center;"><span style="color:#8b949e;">—</span></td>
+        </tr>
+            </table>
+
+        </div>
+
+        <!-- Footer -->
+        <div style="background:#f6f8fa;border-top:1px solid #d0d7de;padding:16px 32px;">
+            <p style="font-size:12px;color:#57606a;margin:0;">
+                This is an automated report from the <b>CSFMD Bug Pipeline</b>.<br>
+                Reply to this email for questions or feedback.
+            </p>
+        </div>
+    </div>
+    </body></html>
+    
